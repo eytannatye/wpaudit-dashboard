@@ -1,0 +1,134 @@
+.compare-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.compare-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.compare-header h2 {
+  margin: 0;
+  color: #333;
+}
+
+.btn-close {
+  padding: 0.75rem 1.5rem;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.btn-close:hover {
+  background: #5a6268;
+}
+
+.compare-table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.compare-table thead {
+  background: #f8f9fa;
+}
+
+.compare-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.compare-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.compare-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.report-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.report-title {
+  font-weight: 600;
+  color: #333;
+  word-break: break-word;
+}
+
+.report-id {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+.has-vulns {
+  background: #f8d7da;
+  color: #721c24;
+  font-weight: 600;
+}
+
+.has-alerts {
+  background: #fff3cd;
+  color: #856404;
+  font-weight: 600;
+}
+
+.has-issues {
+  background: #d1ecf1;
+  color: #0c5460;
+  font-weight: 600;
+}
+
+.compare-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.compare-report-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.compare-report-details p {
+  margin: 0;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .compare-table-wrapper {
+    font-size: 0.85rem;
+  }
+
+  .compare-table th,
+  .compare-table td {
+    padding: 0.5rem;
+  }
+}
+

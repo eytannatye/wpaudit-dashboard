@@ -1,0 +1,263 @@
+.wp-analyzer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.analyzer-subsection {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 4px solid #007bff;
+}
+
+.analyzer-subsection h4 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.subsection-status {
+  margin: 0.5rem 0;
+  color: #666;
+  font-weight: 500;
+}
+
+.subsection-summary {
+  margin: 0.5rem 0;
+  color: #495057;
+}
+
+.subsection-item {
+  margin: 1rem 0;
+}
+
+.subsection-item ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.subsection-item li {
+  margin: 0.25rem 0;
+}
+
+.plugins-enumerated-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.plugin-enumerated-item {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 6px;
+  border-left: 3px solid #007bff;
+}
+
+.plugin-enumerated-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.plugin-lookup-wrapper {
+  margin-top: 0.5rem;
+}
+
+.headers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.header-item {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 4px;
+}
+
+.header-name {
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.9rem;
+}
+
+.header-present {
+  color: #28a745;
+  font-size: 0.85rem;
+}
+
+.header-missing {
+  color: #dc3545;
+  font-size: 0.85rem;
+}
+
+.misconfigured-item {
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  background: #fff3cd;
+  border-radius: 4px;
+  border-left: 3px solid #ffc107;
+}
+
+.misconfigured-details {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.9rem;
+  color: #856404;
+}
+
+.vuln-badge {
+  background: #dc3545;
+  color: white;
+  padding: 0.125rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}
+
+.path-listing {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 4px;
+}
+
+.vuln-list-mini {
+  margin: 0.5rem 0 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.vuln-mini-item {
+  padding: 0.5rem;
+  background: #fff3cd;
+  border-radius: 4px;
+  border-left: 3px solid #ffc107;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.vuln-mini-item.clickable {
+  cursor: pointer;
+}
+
+.vuln-mini-item.clickable:hover {
+  background: #ffe69c;
+  transform: translateX(4px);
+}
+
+.cve-mini {
+  color: #dc3545;
+  font-weight: 600;
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}
+
+.user-enum-summary {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  border-radius: 4px;
+  color: #856404;
+}
+
+.user-enum-table-wrapper {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.user-enum-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.user-enum-table thead {
+  background: #f8f9fa;
+}
+
+.user-enum-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #495057;
+  border-bottom: 2px solid #dee2e6;
+  font-size: 0.9rem;
+}
+
+.user-enum-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
+}
+
+.user-enum-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.user-enum-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.method-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.method-badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background: #e7f3ff;
+  color: #004085;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid #b3d7ff;
+}
+
+.method-count {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  background: #28a745;
+  color: white;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  min-width: 24px;
+  text-align: center;
+}
+
+.user-enum-breakdown {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+
+.user-enum-breakdown h5 {
+  margin: 0 0 0.75rem 0;
+  color: #495057;
+  font-size: 1rem;
+}
+
+.user-enum-breakdown ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.user-enum-breakdown li {
+  margin: 0.5rem 0;
+  color: #495057;
+}
+

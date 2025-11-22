@@ -1,0 +1,53 @@
+.section-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+}
+
+.section-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.section-card-header:hover {
+  background: #e9ecef;
+}
+
+.section-card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-icon {
+  font-size: 1.5rem;
+}
+
+.section-card-title h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.expand-icon {
+  transition: transform 0.3s ease;
+  color: #666;
+  font-size: 0.875rem;
+}
+
+.expand-icon.expanded {
+  transform: rotate(180deg);
+}
+
+.section-card-content {
+  padding: 1.5rem;
+}
+

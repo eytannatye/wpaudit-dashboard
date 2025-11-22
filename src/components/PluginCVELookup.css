@@ -1,0 +1,197 @@
+.plugin-cve-lookup {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.lookup-cve-btn {
+  padding: 0.5rem 1rem;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.lookup-cve-btn:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+.lookup-cve-btn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.lookup-results {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 4px solid #007bff;
+}
+
+.lookup-results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.lookup-results-header h5 {
+  margin: 0;
+  color: #333;
+  font-size: 1rem;
+}
+
+.close-lookup {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #6c757d;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.close-lookup:hover {
+  background: #dee2e6;
+}
+
+.lookup-summary {
+  margin: 0.5rem 0;
+  color: #495057;
+  font-size: 0.9rem;
+}
+
+.cve-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.cve-result-item {
+  padding: 0.75rem;
+  background: white;
+  border-radius: 4px;
+  border-left: 3px solid #ffc107;
+}
+
+.cve-result-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cve-result-id {
+  font-weight: 600;
+  color: #dc3545;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.cve-result-id:hover {
+  text-decoration: underline;
+}
+
+.cve-severity {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.cve-severity.severity-critical {
+  background: #dc3545;
+  color: white;
+}
+
+.cve-severity.severity-high {
+  background: #fd7e14;
+  color: white;
+}
+
+.cve-severity.severity-medium {
+  background: #ffc107;
+  color: #333;
+}
+
+.cve-severity.severity-low {
+  background: #28a745;
+  color: white;
+}
+
+.cve-severity.severity-unknown {
+  background: #6c757d;
+  color: white;
+}
+
+.cve-result-description {
+  margin: 0.5rem 0;
+  color: #495057;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.cve-result-meta {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.lookup-error {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: #f8d7da;
+  border-left: 4px solid #dc3545;
+  border-radius: 4px;
+  color: #721c24;
+}
+
+.lookup-error p {
+  margin: 0.25rem 0;
+}
+
+.lookup-hint {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+.lookup-hint a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.lookup-hint a:hover {
+  text-decoration: underline;
+}
+
+.no-cves-found {
+  padding: 1rem;
+  text-align: center;
+  color: #6c757d;
+}
+
+.lookup-disclaimer {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #856404;
+}
+

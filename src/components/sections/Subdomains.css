@@ -1,0 +1,134 @@
+.subdomains-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.subdomain-status {
+  padding: 0.75rem;
+  background: #e7f3ff;
+  border-left: 4px solid #007bff;
+  border-radius: 4px;
+}
+
+.subdomain-count {
+  font-size: 1rem;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+.subdomain-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.subdomain-link:hover {
+  text-decoration: underline;
+}
+
+.takeover-risk {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.takeover-risk.yes {
+  background: #dc3545;
+  color: white;
+}
+
+.takeover-risk.no {
+  background: #28a745;
+  color: white;
+}
+
+.takeover-risk.unknown {
+  background: #6c757d;
+  color: white;
+}
+
+.takeover-warning {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  border-radius: 6px;
+}
+
+.takeover-warning h4 {
+  margin: 0 0 0.75rem 0;
+  color: #856404;
+}
+
+.takeover-warning ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.takeover-warning li {
+  margin: 0.5rem 0;
+  color: #856404;
+}
+
+.no-subdomains {
+  padding: 1.5rem;
+  text-align: center;
+  color: #6c757d;
+}
+
+.subdomain-note {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.subdomains-found-but-not-listed {
+  padding: 1.5rem;
+}
+
+.subdomain-info-box {
+  padding: 1.5rem;
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  border-radius: 6px;
+}
+
+.subdomain-count-large {
+  font-size: 1.2rem;
+  color: #856404;
+  margin: 0.5rem 0;
+}
+
+.subdomain-warning-text {
+  color: #856404;
+  font-weight: 500;
+  margin: 1rem 0;
+}
+
+.subdomain-suggestion {
+  margin-top: 1rem;
+  color: #856404;
+  font-weight: 500;
+}
+
+.subdomain-sources {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  color: #856404;
+}
+
+.subdomain-sources li {
+  margin: 0.5rem 0;
+}
+
+.subdomain-summary-ref {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 4px;
+  color: #495057;
+  font-size: 0.9rem;
+}
+
