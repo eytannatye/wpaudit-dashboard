@@ -98,7 +98,9 @@ cursor-wpaudit/
 
 ## License
 
-MIT
+This project is based on the WPAudit project and uses the MIT License. See [LICENSE.txt](LICENSE.txt) for details.
+
+Copyright (c) 2025 Huzaifa Shoukat
 
 
 
