@@ -5,7 +5,7 @@ import ReportViewer from './ReportViewer';
 import ReportsList from './ReportsList';
 import ReportCompare from './ReportCompare';
 import Dashboard from './dashboard/Dashboard';
-import { getReport, getReportFiles } from '../utils/api';
+import { getReport } from '../utils/api';
 import '../styles/App.css';
 
 function MainApp() {
@@ -16,6 +16,7 @@ function MainApp() {
   const [reportId, setReportId] = useState(null);
   const [compareIds, setCompareIds] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleFileParsed = (data) => {
     setReportData(data);
@@ -33,28 +34,18 @@ function MainApp() {
 
   const handleSelectReport = async (id) => {
     try {
-      // Get all files for this report
-      const filesInfo = await getReportFiles(id);
-      const files = {};
-      
-      // Load each available file
-      for (const fileType of filesInfo.availableFiles || []) {
-        try {
-          const result = await getReport(id, fileType);
-          files[fileType] = result.data;
-        } catch (err) {
-          console.warn(`Failed to load ${fileType}:`, err);
-        }
-      }
-      
-      // Set full_report as default data for backward compatibility
-      setReportData(files.full_report || null);
+      setLoading(true);
+      const result = await getReport(id);
+      const files = result.files || {};
+      setReportData(result.data || files.full_report || null);
       setReportFiles(files);
       setReportId(id);
       setView('view');
       setError(null);
     } catch (err) {
       setError('Failed to load report: ' + err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -144,6 +135,12 @@ function MainApp() {
             <span className="error-icon">❌</span>
             <span>{error}</span>
             <button onClick={() => setError(null)} className="error-reset">Dismiss</button>
+          </div>
+        )}
+
+        {loading && (
+          <div className="loading-indicator">
+            Loading report...
           </div>
         )}
 
