@@ -25,7 +25,7 @@ const RemediationSuggestions = ({ data }) => {
   const severityOrder = ['Critical', 'High', 'Medium', 'Low', 'Info'];
 
   return (
-    <SectionCard title="Remediation Suggestions" icon="💡">
+    <SectionCard title="Remediation Suggestions" icon="💡" defaultExpanded={true}>
       <div className="remediation-content">
         {severityOrder.map(severity => {
           if (!grouped[severity] || grouped[severity].length === 0) return null;

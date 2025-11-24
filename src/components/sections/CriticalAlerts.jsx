@@ -9,7 +9,12 @@ const CriticalAlerts = ({ data }) => {
   }
 
   return (
-    <SectionCard title="Critical Alerts" icon="⚠️" defaultExpanded={true}>
+    <SectionCard 
+      title="Critical Alerts" 
+      icon="⚠️" 
+      defaultExpanded={true}
+      badge={alerts.length > 0 ? { value: alerts.length, type: 'danger' } : null}
+    >
       <div className="alerts-list">
         {alerts.map((alert, index) => (
           <div key={index} className="alert-item alert-critical">

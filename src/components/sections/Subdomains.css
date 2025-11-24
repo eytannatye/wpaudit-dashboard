@@ -17,6 +17,13 @@
   margin: 0.5rem 0;
 }
 
+.subdomain-source-badge {
+  font-size: 0.85rem;
+  color: #28a745;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
 .subdomain-link {
   color: #007bff;
   text-decoration: none;

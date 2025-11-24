@@ -1,0 +1,71 @@
+.log-viewer {
+  padding: 10px 0;
+}
+
+.log-header {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.log-info {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.log-info strong {
+  color: #007bff;
+}
+
+.log-content {
+  background-color: #1e1e1e;
+  border-radius: 4px;
+  padding: 15px;
+  overflow-x: auto;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.log-text {
+  margin: 0;
+  font-family: 'Courier New', 'Monaco', 'Menlo', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #d4d4d4;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.log-error,
+.log-empty {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+}
+
+.log-empty {
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+/* Scrollbar styling for log content */
+.log-content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.log-content::-webkit-scrollbar-track {
+  background: #2d2d2d;
+  border-radius: 4px;
+}
+
+.log-content::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+
+.log-content::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+

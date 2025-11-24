@@ -9,7 +9,7 @@ const SummaryPoints = ({ data }) => {
   }
 
   return (
-    <SectionCard title="Summary Points" icon="📋">
+    <SectionCard title="Summary Points" icon="📋" defaultExpanded={true}>
       <ul className="summary-list">
         {summaryPoints.map((point, index) => (
           <li key={index} className="summary-item">

@@ -20,15 +20,15 @@ const ReportsList = ({ onSelectReport, onCompareReports }) => {
   useEffect(() => {
     loadReports();
     loadHostnames();
-  }, [filters, pagination.page]);
+  }, [filters, pagination?.page]);
 
   const loadReports = async () => {
     try {
       setLoading(true);
       const response = await getReports({
         ...filters,
-        page: pagination.page,
-        limit: pagination.limit
+        page: pagination?.page || 1,
+        limit: pagination?.limit || 20
       });
       setReports(response.reports);
       setPagination(response.pagination);
@@ -218,7 +218,7 @@ const ReportsList = ({ onSelectReport, onCompareReports }) => {
             ))}
           </div>
 
-          {pagination.totalPages > 1 && (
+          {pagination && pagination.totalPages > 1 && (
             <div className="pagination">
               <button
                 onClick={() => handlePageChange(pagination.page - 1)}

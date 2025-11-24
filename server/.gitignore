@@ -1,6 +1,0 @@
-*.db
-*.db-journal
-wpaudit-db.json
-node_modules/
-.env
-

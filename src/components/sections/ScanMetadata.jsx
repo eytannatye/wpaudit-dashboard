@@ -13,7 +13,7 @@ const ScanMetadata = ({ data }) => {
   }
 
   return (
-    <SectionCard title="Scan Metadata" icon="📊">
+    <SectionCard title="Scan Metadata" icon="📊" defaultExpanded={true}>
       <div className="metadata-grid">
         <div className="metadata-item">
           <label>Start Time:</label>

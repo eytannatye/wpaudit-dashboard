@@ -1,0 +1,37 @@
+.subfinder-content {
+  padding: 10px 0;
+}
+
+.subdomain-count {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.subdomain-count strong {
+  color: #007bff;
+  font-size: 18px;
+}
+
+.subdomain-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.subdomain-link:hover {
+  text-decoration: underline;
+}
+
+.subfinder-error,
+.subfinder-empty {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+}
+
+.subfinder-empty {
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+

@@ -9,7 +9,7 @@ const ToolErrors = ({ data }) => {
   }
 
   return (
-    <SectionCard title="Tool Errors" icon="❌" defaultExpanded={false}>
+    <SectionCard title="Tool Errors" icon="❌" defaultExpanded={true}>
       <div className="errors-list">
         {errors.map((error, index) => (
           <div key={index} className="error-item">

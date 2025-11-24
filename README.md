@@ -4,12 +4,14 @@ A React-based web application for viewing and analyzing WordPress security audit
 
 ## Features
 
+- 🔐 **Secure Authentication**: Firebase Authentication with single-user registration
 - 📤 **File Upload**: Drag-and-drop or click to upload WPAudit JSON reports
-- 💾 **Database Storage**: JSON file-based storage to save and manage all reports
+- 💾 **Cloud Storage**: Firebase Firestore for secure, scalable data storage
 - 📋 **Report Management**: List, search, filter, and view saved reports
 - 🔄 **Report Comparison**: Compare multiple reports side-by-side
 - 📊 **Structured Display**: Organized sections for all report data
 - 🎨 **Modern UI**: Clean, responsive design with color-coded severity levels
+- 🚫 **Duplicate Detection**: Automatic prevention of duplicate report uploads
 - 🔍 **Comprehensive Analysis**: View all aspects of the security audit:
   - Scan metadata and tool checks
   - WPScan results (WordPress version, themes, plugins, vulnerabilities)
@@ -22,12 +24,13 @@ A React-based web application for viewing and analyzing WordPress security audit
 
 ### Prerequisites
 
-- Node.js (v16 or higher)
+- Node.js (v18 or higher)
 - npm or yarn
+- Firebase project (for authentication and storage)
 
 ### Installation
 
-1. Install frontend dependencies:
+1. Clone the repository and install dependencies:
 ```bash
 npm install
 ```

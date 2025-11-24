@@ -26,7 +26,7 @@ const ToolChecks = ({ data }) => {
   ];
 
   return (
-    <SectionCard title="Tool Checks" icon="🔧">
+    <SectionCard title="Tool Checks" icon="🔧" defaultExpanded={true}>
       <DataTable data={tools} columns={columns} />
     </SectionCard>
   );

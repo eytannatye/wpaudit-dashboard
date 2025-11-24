@@ -19,8 +19,13 @@ const WPScanResults = ({ data }) => {
   const targetData = targets[targetUrl];
   const scanData = safeGet(targetData, 'data', {});
 
+  // Safety check: ensure scanData is valid
+  if (!scanData || typeof scanData !== 'object') {
+    return null;
+  }
+
   return (
-    <SectionCard title="WPScan Results" icon="🔍">
+    <SectionCard title="WPScan Results" icon="🔍" defaultExpanded={true}>
       <div className="wpscan-content">
         {targetData.status && (
           <div className="status-badge">
@@ -28,25 +33,25 @@ const WPScanResults = ({ data }) => {
           </div>
         )}
 
-        {scanData.version && (
+        {scanData.version && scanData.version !== null && (
           <div className="wpscan-section">
             <h4>WordPress Version</h4>
             <div className="info-grid">
               <div className="info-item">
                 <label>Version:</label>
-                <span>{scanData.version.number || 'N/A'}</span>
+                <span>{scanData.version?.number || 'N/A'}</span>
               </div>
               <div className="info-item">
                 <label>Status:</label>
-                <span className={`status-${scanData.version.status?.toLowerCase() || 'unknown'}`}>
-                  {scanData.version.status || 'N/A'}
+                <span className={`status-${scanData.version?.status?.toLowerCase() || 'unknown'}`}>
+                  {scanData.version?.status || 'N/A'}
                 </span>
               </div>
               <div className="info-item">
                 <label>Release Date:</label>
-                <span>{formatDate(scanData.version.release_date)}</span>
+                <span>{formatDate(scanData.version?.release_date)}</span>
               </div>
-              {scanData.version.vulnerabilities && scanData.version.vulnerabilities.length > 0 && (
+              {scanData.version?.vulnerabilities && scanData.version.vulnerabilities.length > 0 && (
                 <div className="info-item full-width">
                   <label>Vulnerabilities:</label>
                   <div className="vuln-list">
@@ -87,27 +92,27 @@ const WPScanResults = ({ data }) => {
           </div>
         )}
 
-        {scanData.main_theme && (
+        {scanData.main_theme && scanData.main_theme !== null && (
           <div className="wpscan-section">
             <h4>Main Theme</h4>
             <div className="info-grid">
               <div className="info-item">
                 <label>Name:</label>
-                <span>{scanData.main_theme.slug || 'N/A'}</span>
+                <span>{scanData.main_theme?.slug || 'N/A'}</span>
               </div>
               <div className="info-item">
                 <label>Version:</label>
-                <span>{scanData.main_theme.version?.number || 'N/A'}</span>
+                <span>{scanData.main_theme?.version?.number || 'N/A'}</span>
               </div>
               <div className="info-item">
                 <label>Latest Version:</label>
-                <span>{scanData.main_theme.latest_version || 'N/A'}</span>
+                <span>{scanData.main_theme?.latest_version || 'N/A'}</span>
               </div>
               <div className="info-item">
                 <label>Outdated:</label>
-                <span>{scanData.main_theme.outdated ? 'Yes' : 'No'}</span>
+                <span>{scanData.main_theme?.outdated ? 'Yes' : 'No'}</span>
               </div>
-              {scanData.main_theme.vulnerabilities && scanData.main_theme.vulnerabilities.length > 0 && (
+              {scanData.main_theme?.vulnerabilities && scanData.main_theme.vulnerabilities.length > 0 && (
                 <div className="info-item full-width">
                   <label>Vulnerabilities:</label>
                   <div className="vuln-list">

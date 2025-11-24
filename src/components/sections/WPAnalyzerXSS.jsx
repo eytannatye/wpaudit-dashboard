@@ -12,7 +12,7 @@ const WPAnalyzerXSS = ({ data }) => {
   const potentialXSS = safeGet(xssData, 'potential_reflected_xss', []);
 
   return (
-    <SectionCard title="XSS Analysis" icon="🔐" defaultExpanded={false}>
+    <SectionCard title="XSS Analysis" icon="🔐" defaultExpanded={true}>
       <div className="xss-content">
         <p className="subsection-status">Status: {xssData.status || 'Unknown'}</p>
         {xssData.details && <p>{xssData.details}</p>}

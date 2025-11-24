@@ -3,7 +3,16 @@ import { safeGet } from '../../utils/jsonParser';
 import DataTable from '../common/DataTable';
 import './Subdomains.css';
 
-const Subdomains = ({ data }) => {
+const Subdomains = ({ data, subfinderData }) => {
+  // Parse subfinder.txt file if provided
+  let subfinderSubdomains = [];
+  if (subfinderData && typeof subfinderData === 'string') {
+    subfinderSubdomains = subfinderData
+      .split('\n')
+      .map(line => line.trim())
+      .filter(line => line.length > 0 && !line.startsWith('#'));
+  }
+
   // Check multiple possible locations for subdomain data
   const subdomainScanner = safeGet(data, 'findings.subdomain_scanner', {});
   const takeoverChecks = safeGet(subdomainScanner, 'takeover_checks', {});
@@ -22,8 +31,10 @@ const Subdomains = ({ data }) => {
   // Extract subdomains from potential takeovers if they exist
   const takeoverSubdomains = potentialTakeovers.map(t => t.subdomain || t.domain || t.url).filter(Boolean);
 
-  // Combine all found subdomains
-  const allSubdomains = [...new Set([...subdomains, ...takeoverSubdomains])];
+  // Combine all found subdomains (prioritize subfinder.txt if available)
+  const allSubdomains = subfinderSubdomains.length > 0 
+    ? [...new Set([...subfinderSubdomains, ...subdomains, ...takeoverSubdomains])]
+    : [...new Set([...subdomains, ...takeoverSubdomains])];
 
   // Parse summary points to extract subdomain count if list isn't available
   const summaryPoints = safeGet(data, 'summary_points', []);
@@ -97,7 +108,7 @@ const Subdomains = ({ data }) => {
   ];
 
   return (
-    <SectionCard title="Discovered Subdomains" icon="🌐">
+    <SectionCard title="Discovered Subdomains" icon="🌐" defaultExpanded={true}>
       <div className="subdomains-content">
         {takeoverChecks.status && (
           <div className="subdomain-status">
@@ -109,6 +120,9 @@ const Subdomains = ({ data }) => {
           <>
             <p className="subdomain-count">
               <strong>{allSubdomains.length}</strong> subdomain{allSubdomains.length !== 1 ? 's' : ''} discovered
+              {subfinderSubdomains.length > 0 && (
+                <span className="subdomain-source-badge"> (from subfinder.txt)</span>
+              )}
             </p>
             <DataTable columns={columns} data={tableData} />
             
@@ -136,10 +150,13 @@ const Subdomains = ({ data }) => {
                 ⚠️ Subdomains were discovered by Subfinder, but the detailed list is not stored in this report JSON.
               </p>
               <p className="subdomain-suggestion">
+                💡 <strong>Tip:</strong> You can upload the <code>subfinder.txt</code> file to see the detailed subdomain list!
+              </p>
+              <p className="subdomain-suggestion">
                 The subdomain list may be available in:
               </p>
               <ul className="subdomain-sources">
-                <li>Subfinder output files (if saved separately)</li>
+                <li>Subfinder output files (if saved separately) - <strong>Upload the <code>subfinder.txt</code> file</strong></li>
                 <li>WPAudit scan logs or output directory</li>
                 <li>Subfinder's default output location</li>
               </ul>

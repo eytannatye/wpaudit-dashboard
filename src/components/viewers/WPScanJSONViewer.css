@@ -1,0 +1,244 @@
+.wpscan-json-viewer {
+  width: 100%;
+}
+
+.banner-info,
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.info-item label {
+  font-weight: 600;
+  color: #666;
+  font-size: 13px;
+}
+
+.info-item span {
+  color: #333;
+}
+
+.info-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.info-item a:hover {
+  text-decoration: underline;
+}
+
+.findings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.finding-item {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border-left: 3px solid #007bff;
+}
+
+.finding-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.confidence-badge {
+  background-color: #28a745;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.finding-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.finding-details div {
+  display: flex;
+  gap: 10px;
+}
+
+.finding-details label {
+  font-weight: 600;
+  min-width: 80px;
+}
+
+.plugins-list,
+.users-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.plugin-item,
+.user-item {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.plugin-header,
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.plugin-version {
+  background-color: #007bff;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.plugin-details,
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.plugin-details div,
+.user-details div {
+  display: flex;
+  gap: 10px;
+}
+
+.plugin-details label,
+.user-details label {
+  font-weight: 600;
+  min-width: 100px;
+}
+
+.plugin-vulns {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.vuln-section {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.vuln-section h5 {
+  margin-bottom: 10px;
+  color: #dc3545;
+}
+
+.vuln-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vuln-item {
+  padding: 12px;
+  background-color: #fff3cd;
+  border-radius: 4px;
+  border-left: 3px solid #ffc107;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.vuln-item:hover {
+  background-color: #ffeaa7;
+  transform: translateX(3px);
+}
+
+.vuln-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.vuln-info-icon {
+  font-size: 16px;
+}
+
+.vuln-fixed {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #28a745;
+  font-weight: 600;
+}
+
+.vuln-cves {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.cve-badge {
+  background-color: #dc3545;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.cve-badge:hover {
+  background-color: #c82333;
+  text-decoration: none;
+}
+
+.plugin-actions {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.status-latest {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.status-outdated {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.status-unknown {
+  color: #6c757d;
+  font-weight: 600;
+}
+
+.wpscan-json-error {
+  padding: 20px;
+  text-align: center;
+  color: #dc3545;
+  background-color: #f8d7da;
+  border-radius: 4px;
+}
+

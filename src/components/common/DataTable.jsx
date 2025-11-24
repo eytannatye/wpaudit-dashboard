@@ -20,7 +20,7 @@ const DataTable = ({ data, columns, emptyMessage = 'No data available' }) => {
             <tr key={rowIdx}>
               {columns.map((col, colIdx) => (
                 <td key={colIdx}>
-                  {col.render ? col.render(row[col.accessor], row) : row[col.accessor]}
+                  {col.render ? col.render(row) : row[col.accessor]}
                 </td>
               ))}
             </tr>
