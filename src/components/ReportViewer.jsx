@@ -152,39 +152,28 @@ const ReportViewer = ({ data, files, reportId }) => {
     });
   }
 
-  // WPScan JSON tab
-  if (allFiles.wpscan_json) {
-    tabs.push({
-      id: 'wpscan_json',
-      label: 'WPScan JSON',
-      content: <WPScanJSONViewer data={allFiles.wpscan_json} />
-    });
-  }
-
-  // Subfinder tab
-  if (allFiles.subfinder_txt) {
-    tabs.push({
-      id: 'subfinder',
-      label: 'Subfinder',
-      content: <SubfinderViewer data={allFiles.subfinder_txt} />
-    });
-  }
-
-  // WPScan Log tab
-  if (allFiles.wpscan_log) {
-    tabs.push({
-      id: 'wpscan_log',
-      label: 'WPScan Log',
-      content: <LogViewer data={allFiles.wpscan_log} />
-    });
-  }
-
-  if (tabs.length === 0) {
+  if (tabs.length === 0 || !fullReportData) {
+    // If no full report, show message
     return (
       <div className="report-viewer">
         <div className="report-header">
           <h1>WPAudit Report Viewer</h1>
-          <p>No report data available</p>
+          <div style={{ padding: '40px', textAlign: 'center' }}>
+            <p style={{ fontSize: '18px', color: '#666', marginBottom: '20px' }}>
+              ⚠️ דוח מלא לא זמין
+            </p>
+            <p style={{ color: '#999', marginBottom: '10px' }}>
+              הדוח הזה לא כולל את קובץ <strong>FULL_REPORT.json</strong>
+            </p>
+            <p style={{ color: '#999' }}>
+              יש להעלות את כל 4 הקבצים יחד (כולל FULL_REPORT.json) כדי לראות את הדוח המלא
+            </p>
+            {allFiles.wpscan_json && (
+              <p style={{ marginTop: '20px', color: '#28a745' }}>
+                ✓ קבצים זמינים: {Object.keys(allFiles).join(', ')}
+              </p>
+            )}
+          </div>
         </div>
       </div>
     );
