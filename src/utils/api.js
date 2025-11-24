@@ -137,6 +137,10 @@ export const saveReport = async (reportData, filename = null) => {
     const fileType = filename ? detectFileType(filename) : null;
     const reportPrefix = filename ? getReportPrefix(filename) : null;
     
+    if (!fileType) {
+      throw new Error('Unknown file type. Please upload a supported report file.');
+    }
+    
     console.log('Saving to Firestore:', { filename, fileType, reportPrefix });
 
     // Check if a report with this prefix already exists (to prevent duplicates)
@@ -153,26 +157,35 @@ export const saveReport = async (reportData, filename = null) => {
       if (!existingCheck.empty) {
         const existingDoc = existingCheck.docs[0];
         const existingData = existingDoc.data();
-        const uploadedDate = existingData.createdAt?.toDate?.()?.toLocaleDateString('he-IL', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit'
-        }) || 'Unknown';
-        
-        // Try to extract domain from reportPrefix if metadata is not available
-        let targetUrl = existingData.metadata?.target_url || existingData.metadata?.hostname;
-        if (!targetUrl && reportPrefix) {
-          // Extract domain from reportPrefix (wpaudit_report_domain_timestamp)
-          const domainMatch = reportPrefix.match(/^wpaudit_report_([^_]+)_\d{8}_\d{6}$/);
-          if (domainMatch) {
-            targetUrl = domainMatch[1];
+        const docRef = doc(db, 'reports', existingDoc.id);
+
+        const updatedFiles = {
+          ...(existingData.files || {}),
+          [fileType]: reportData
+        };
+
+        // Update metadata only when uploading full_report
+        const metadata = fileType === 'full_report'
+          ? extractMetadata(reportData, fileType, reportPrefix)
+          : existingData.metadata || extractMetadata(reportData, fileType, reportPrefix);
+
+        await updateDoc(docRef, {
+          files: updatedFiles,
+          metadata,
+          updatedAt: serverTimestamp(),
+          lastUploadedFile: {
+            fileType,
+            filename,
+            uploadedAt: serverTimestamp()
           }
-        }
-        targetUrl = targetUrl || reportPrefix || 'Unknown URL';
-        
-        throw new Error(`⚠️ דוח זה כבר קיים במערכת!\n\n📊 אתר: ${targetUrl}\n📅 הועלה בתאריך: ${uploadedDate}\n\n💡 כל הקבצים של הסריקה הזו כבר נשמרו.\nאין צורך להעלות אותם שוב.`);
+        });
+
+        return {
+          id: existingDoc.id,
+          message: 'Report updated with new file',
+          fileType,
+          updated: true
+        };
       }
     }
     
