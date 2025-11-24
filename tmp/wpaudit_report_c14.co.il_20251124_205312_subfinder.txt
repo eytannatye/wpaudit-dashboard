@@ -1,0 +1,4 @@
+vod.c14.co.il
+story.c14.co.il
+takti.c14.co.il
+taktic.c14.co.il

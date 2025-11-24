@@ -220,7 +220,7 @@ const ExtensionVulnerabilities = ({ data, onVulnClick }) => {
           <ul>
             {themes.map((theme, idx) => (
               <li key={idx}>
-                {theme.name} (v{theme.version})
+                {theme.name} {theme.version ? `(v${theme.version})` : ''}
                 {theme.vulnerabilities && theme.vulnerabilities.length > 0 && (
                   <>
                     <span className="vuln-badge"> {theme.vulnerabilities.length} vulnerabilities</span>
@@ -253,7 +253,7 @@ const ExtensionVulnerabilities = ({ data, onVulnClick }) => {
             {plugins.map((plugin, idx) => (
               <li key={idx} className="plugin-enumerated-item">
                 <div className="plugin-enumerated-header">
-                  <span>{plugin.name} (v{plugin.version})</span>
+                  <span>{plugin.name} {plugin.version ? `(v${plugin.version})` : ''}</span>
                   {plugin.vulnerabilities && plugin.vulnerabilities.length > 0 && (
                     <span className="vuln-badge"> {plugin.vulnerabilities.length} vulnerabilities</span>
                   )}

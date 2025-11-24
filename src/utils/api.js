@@ -149,7 +149,16 @@ export const saveReport = async (reportData, filename = null) => {
           minute: '2-digit'
         }) || 'Unknown';
         
-        const targetUrl = existingData.metadata?.target_url || 'Unknown URL';
+        // Try to extract domain from reportPrefix if metadata is not available
+        let targetUrl = existingData.metadata?.target_url || existingData.metadata?.hostname;
+        if (!targetUrl && reportPrefix) {
+          // Extract domain from reportPrefix (wpaudit_report_domain_timestamp)
+          const domainMatch = reportPrefix.match(/^wpaudit_report_([^_]+)_\d{8}_\d{6}$/);
+          if (domainMatch) {
+            targetUrl = domainMatch[1];
+          }
+        }
+        targetUrl = targetUrl || reportPrefix || 'Unknown URL';
         
         throw new Error(`⚠️ דוח זה כבר קיים במערכת!\n\n📊 אתר: ${targetUrl}\n📅 הועלה בתאריך: ${uploadedDate}\n\n💡 כל הקבצים של הסריקה הזו כבר נשמרו.\nאין צורך להעלות אותם שוב.`);
       }

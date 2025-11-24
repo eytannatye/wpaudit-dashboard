@@ -16,6 +16,7 @@ lerna-debug.log*
 firebase.js
 .firebase/
 firebase-debug.log
+# Note: firebase.json should be tracked (not ignored)
 
 node_modules
 dist
