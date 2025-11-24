@@ -237,9 +237,26 @@ export const getReports = async (params = {}) => {
 
     querySnapshot.forEach((doc) => {
       const data = doc.data();
+      const metadata = data.metadata || {};
+      
+      // Fix missing hostname/target_url by extracting from reportPrefix
+      let hostname = metadata.hostname;
+      let target_url = metadata.target_url;
+      
+      if ((!hostname || !target_url) && data.reportPrefix) {
+        const domainMatch = data.reportPrefix.match(/^wpaudit_report_([^_]+)_\d{8}_\d{6}$/);
+        if (domainMatch) {
+          const domain = domainMatch[1];
+          hostname = hostname || domain;
+          target_url = target_url || `https://${domain}`;
+        }
+      }
+      
       reports.push({
         id: doc.id,
-        ...data.metadata,
+        ...metadata,
+        hostname: hostname || 'Unknown',
+        target_url: target_url || null,
         created_at: data.createdAt?.toDate?.()?.toISOString() || null,
         updated_at: data.updatedAt?.toDate?.()?.toISOString() || null
       });
@@ -302,11 +319,23 @@ export const getReport = async (id, fileType = null) => {
       throw new Error('Unauthorized');
     }
 
+    // Fix metadata if missing hostname/target_url
+    let fixedMetadata = { ...data.metadata };
+    if ((!fixedMetadata.hostname || !fixedMetadata.target_url) && data.reportPrefix) {
+      const domainMatch = data.reportPrefix.match(/^wpaudit_report_([^_]+)_\d{8}_\d{6}$/);
+      if (domainMatch) {
+        const domain = domainMatch[1];
+        fixedMetadata.hostname = fixedMetadata.hostname || domain;
+        fixedMetadata.target_url = fixedMetadata.target_url || `https://${domain}`;
+      }
+    }
+
     if (fileType && data.files[fileType]) {
       return {
         id: docSnap.id,
         data: data.files[fileType],
-        metadata: data.metadata
+        metadata: fixedMetadata,
+        reportPrefix: data.reportPrefix
       };
     }
 
@@ -314,7 +343,8 @@ export const getReport = async (id, fileType = null) => {
       id: docSnap.id,
       data: data.files.full_report || null,
       files: data.files,
-      metadata: data.metadata
+      metadata: fixedMetadata,
+      reportPrefix: data.reportPrefix
     };
   } catch (error) {
     console.error('getReport error:', error);
