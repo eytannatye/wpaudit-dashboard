@@ -69,12 +69,24 @@ const generateFingerprint = (reportData, fileType, filename) => {
 
 /**
  * Extract metadata from report data
+ * @param {*} reportData - The report data
+ * @param {string} fileType - The file type
+ * @param {string} reportPrefix - Optional report prefix to extract domain from
  */
-const extractMetadata = (reportData, fileType) => {
+const extractMetadata = (reportData, fileType, reportPrefix = null) => {
+  // Try to extract domain from reportPrefix as fallback
+  let domainFromPrefix = null;
+  if (reportPrefix) {
+    const domainMatch = reportPrefix.match(/^wpaudit_report_([^_]+)_\d{8}_\d{6}$/);
+    if (domainMatch) {
+      domainFromPrefix = domainMatch[1];
+    }
+  }
+
   if (fileType !== 'full_report' || typeof reportData !== 'object' || !reportData) {
     return {
-      target_url: null,
-      hostname: null,
+      target_url: domainFromPrefix ? `https://${domainFromPrefix}` : null,
+      hostname: domainFromPrefix,
       scan_date: null,
       scan_start_time: null,
       scan_end_time: null,
@@ -103,8 +115,8 @@ const extractMetadata = (reportData, fileType) => {
   });
 
   return {
-    target_url: targetInfo.url || null,
-    hostname: targetInfo.hostname || null,
+    target_url: targetInfo.url || (domainFromPrefix ? `https://${domainFromPrefix}` : null),
+    hostname: targetInfo.hostname || domainFromPrefix,
     scan_date: metadata.start_time ? metadata.start_time.split('T')[0] : null,
     scan_start_time: metadata.start_time || null,
     scan_end_time: metadata.end_time || null,
@@ -171,7 +183,7 @@ export const saveReport = async (reportData, filename = null) => {
     // we now prevent duplicates entirely at the reportPrefix level
 
     // Create new report
-    const metadata = extractMetadata(reportData, fileType);
+    const metadata = extractMetadata(reportData, fileType, reportPrefix);
     
     const reportDoc = {
       userId: auth.currentUser.uid,

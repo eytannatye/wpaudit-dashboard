@@ -84,6 +84,11 @@ function MainApp() {
     if (idOrAction === 'list') {
       setView('list');
     } else {
+      // Clear previous state before loading new report
+      setReportData(null);
+      setReportFiles(null);
+      setReportId(null);
+      setError(null);
       await handleSelectReport(idOrAction);
     }
   };

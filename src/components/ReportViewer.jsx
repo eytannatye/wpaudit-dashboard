@@ -21,17 +21,21 @@ import { safeGet } from '../utils/jsonParser';
 import './ReportViewer.css';
 
 const ReportViewer = ({ data, files, reportId }) => {
-  const [allFiles, setAllFiles] = useState(files || {});
+  const [allFiles, setAllFiles] = useState({});
   const [loading, setLoading] = useState(false);
   const [activeSection, setActiveSection] = useState('metadata'); // Start with metadata
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Load additional files if reportId is provided
+  // Reset and load files when component receives new props
   useEffect(() => {
-    if (reportId && !files) {
-      loadAllFiles();
-    } else if (files) {
+    // Always reset state when reportId or files change
+    setActiveSection('metadata');
+    setSearchQuery('');
+    
+    if (files && Object.keys(files).length > 0) {
       setAllFiles(files);
+    } else if (reportId) {
+      loadAllFiles();
     }
   }, [reportId, files]);
 
