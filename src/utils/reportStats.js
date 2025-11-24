@@ -43,14 +43,19 @@ export const calculateReportStats = (data) => {
   Object.values(targets).forEach(target => {
     const scanData = safeGet(target, 'data', {});
     
+    // Safety check - ensure scanData is valid
+    if (!scanData || typeof scanData !== 'object') {
+      return;
+    }
+    
     // WordPress Version
-    if (scanData.version?.number && !stats.wpVersion) {
+    if (scanData.version && scanData.version !== null && scanData.version.number && !stats.wpVersion) {
       stats.wpVersion = scanData.version.number;
       stats.wpVersionStatus = scanData.version.status;
     }
     
     // Version vulnerabilities
-    if (scanData.version?.vulnerabilities) {
+    if (scanData.version && scanData.version !== null && Array.isArray(scanData.version.vulnerabilities)) {
       scanData.version.vulnerabilities.forEach(vuln => {
         stats.totalVulnerabilities++;
         const severity = getSeverityFromVuln(vuln);
@@ -59,7 +64,7 @@ export const calculateReportStats = (data) => {
     }
     
     // Theme vulnerabilities
-    if (scanData.main_theme?.vulnerabilities) {
+    if (scanData.main_theme && scanData.main_theme !== null && Array.isArray(scanData.main_theme.vulnerabilities)) {
       scanData.main_theme.vulnerabilities.forEach(vuln => {
         stats.totalVulnerabilities++;
         const severity = getSeverityFromVuln(vuln);
@@ -68,10 +73,10 @@ export const calculateReportStats = (data) => {
     }
     
     // Plugins
-    if (scanData.plugins) {
+    if (scanData.plugins && typeof scanData.plugins === 'object') {
       stats.pluginsCount = Object.keys(scanData.plugins).length;
       Object.values(scanData.plugins).forEach(plugin => {
-        if (plugin.vulnerabilities) {
+        if (plugin && Array.isArray(plugin.vulnerabilities)) {
           plugin.vulnerabilities.forEach(vuln => {
             stats.totalVulnerabilities++;
             const severity = getSeverityFromVuln(vuln);
@@ -82,7 +87,7 @@ export const calculateReportStats = (data) => {
     }
     
     // Themes count
-    if (scanData.themes) {
+    if (scanData.themes && typeof scanData.themes === 'object') {
       stats.themesCount = Object.keys(scanData.themes).length;
     }
   });
